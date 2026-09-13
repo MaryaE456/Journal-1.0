@@ -17,10 +17,10 @@ body {
 }
 
 .bg-kraft-texture {
-  background-color: #b98a5e;
+  background-color: #7a1f2b;
   background-image:
-    radial-gradient(rgba(62, 44, 35, 0.08) 1px, transparent 1px),
-    linear-gradient(135deg, rgba(94, 64, 40, 0.15), rgba(94, 64, 40, 0));
+    radial-gradient(rgba(0, 0, 0, 0.15) 1px, transparent 1px),
+    linear-gradient(135deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0));
   background-size: 3px 3px, 100% 100%;
 }
 
@@ -31,6 +31,11 @@ body {
     transparent 27px,
     rgba(62, 44, 35, 0.12) 28px
   );
+}
+
+.bg-dotted-page {
+  background-image: radial-gradient(rgba(43, 26, 22, 0.18) 1.5px, transparent 1.5px);
+  background-size: 14px 14px;
 }
 
 .bg-grid-page {
