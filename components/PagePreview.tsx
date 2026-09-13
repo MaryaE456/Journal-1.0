@@ -1,12 +1,15 @@
 import { JournalPage } from "@/lib/types";
-import { PAGE_BACKGROUNDS } from "@/lib/fontMap";
+import { BACKGROUND_STYLES } from "@/lib/fontMap";
 import ElementContent from "./ElementContent";
 
 export default function PagePreview({ page }: { page: JournalPage }) {
-  const bg = PAGE_BACKGROUNDS.find((b) => b.key === page.background)?.className ?? "bg-paper";
+  const pattern = BACKGROUND_STYLES.find((b) => b.key === page.background.style)?.patternClassName ?? "";
 
   return (
-    <div className={`relative w-full h-full overflow-hidden ${bg}`}>
+    <div
+      className={`relative w-full h-full overflow-hidden ${pattern}`}
+      style={{ backgroundColor: page.background.color }}
+    >
       {[...page.elements]
         .sort((a, b) => a.zIndex - b.zIndex)
         .map((el) => (
