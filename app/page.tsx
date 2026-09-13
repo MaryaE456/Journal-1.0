@@ -53,7 +53,7 @@ export default function HomePage() {
       <header className="mb-12 flex items-end justify-between flex-wrap gap-4">
         <div>
           <p className="font-hand text-ink-light text-lg mb-1">welcome back to your</p>
-          <h1 className="font-script text-6xl md:text-7xl text-ink-deep text-[#3E2C23] leading-none">
+          <h1 className="font-script text-6xl md:text-7xl text-ink-deep text-[#2B1A16] leading-none">
             Scrapbook Journal
           </h1>
         </div>
