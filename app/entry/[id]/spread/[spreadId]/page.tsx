@@ -403,6 +403,7 @@ function BackgroundPicker({
       </div>
       <div className="w-px h-5 bg-kraft-dark/20" />
       <ColorPicker color={background.color} onChange={onColorChange} />
+      <span className="font-ui text-[10px] text-ink-light">colors</span>
     </div>
   );
 }
