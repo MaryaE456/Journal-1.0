@@ -71,10 +71,12 @@ export default function ColorPicker({
     <div className="relative">
       <button
         onClick={() => setOpen((v) => !v)}
-        className="w-7 h-7 rounded-full border-2 border-white shadow-page"
+        className="relative w-8 h-8 rounded-full border-2 border-ink/40 shadow-lift flex items-center justify-center"
         style={{ backgroundColor: color }}
-        title="Choose a color"
-      />
+        title="Choose a background color"
+      >
+        <span className="text-[13px] leading-none">🎨</span>
+      </button>
       {open && (
         <>
           <div className="fixed inset-0 z-40" onClick={() => setOpen(false)} />
