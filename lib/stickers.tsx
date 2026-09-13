@@ -213,6 +213,125 @@ export const BUILT_IN_STICKERS: StickerDef[] = [
     ),
   },
   {
+    id: "vinyl",
+    label: "Vinyl record",
+    render: () => (
+      <svg viewBox="0 0 100 100" fill="none">
+        <circle cx="50" cy="50" r="46" stroke={stroke} strokeWidth="3" fill="#1A1414" />
+        <circle cx="50" cy="50" r="34" stroke="#3D0E15" strokeWidth="1.5" fill="none" opacity="0.6" />
+        <circle cx="50" cy="50" r="24" stroke="#3D0E15" strokeWidth="1.5" fill="none" opacity="0.6" />
+        <circle cx="50" cy="50" r="14" stroke={stroke} strokeWidth="3" fill="#C9525E" />
+        <circle cx="50" cy="50" r="3" fill={stroke} />
+      </svg>
+    ),
+  },
+  {
+    id: "cassette",
+    label: "Cassette tape",
+    render: () => (
+      <svg viewBox="0 0 120 90" fill="none">
+        <rect x="3" y="3" width="114" height="84" rx="6" stroke={stroke} strokeWidth="3.5" fill="#F3ECDD" />
+        <rect x="14" y="14" width="92" height="30" rx="3" stroke={stroke} strokeWidth="2.5" fill="#C9525E" />
+        <circle cx="36" cy="60" r="13" stroke={stroke} strokeWidth="3" fill="#F3ECDD" />
+        <circle cx="84" cy="60" r="13" stroke={stroke} strokeWidth="3" fill="#F3ECDD" />
+        <circle cx="36" cy="60" r="4" fill={stroke} />
+        <circle cx="84" cy="60" r="4" fill={stroke} />
+        <line x1="52" y1="60" x2="68" y2="60" stroke={stroke} strokeWidth="3" />
+      </svg>
+    ),
+  },
+  {
+    id: "guitar",
+    label: "Guitar",
+    render: () => (
+      <svg viewBox="0 0 100 100" fill="none">
+        <circle cx="34" cy="66" r="24" stroke={stroke} strokeWidth="3.5" fill="#7A1F2B" />
+        <circle cx="34" cy="66" r="9" stroke={stroke} strokeWidth="2" fill="#F3ECDD" />
+        <path d="M46 50L84 10" stroke={stroke} strokeWidth="6" strokeLinecap="round" />
+        <path d="M78 6L92 20" stroke={stroke} strokeWidth="5" strokeLinecap="round" />
+        <line x1="20" y1="66" x2="48" y2="66" stroke={stroke} strokeWidth="1.5" opacity="0.5" />
+      </svg>
+    ),
+  },
+  {
+    id: "lips",
+    label: "Lips",
+    render: () => (
+      <svg viewBox="0 0 100 60" fill="none">
+        <path
+          d="M8 26C20 10 38 8 50 18C62 8 80 10 92 26C80 24 68 24 50 32C32 24 20 24 8 26Z"
+          stroke={stroke}
+          strokeWidth="3"
+          fill="#8B1E2B"
+        />
+        <path
+          d="M8 26C20 42 38 50 50 40C62 50 80 42 92 26C80 34 66 38 50 34C34 38 20 34 8 26Z"
+          stroke={stroke}
+          strokeWidth="3"
+          fill="#6B1620"
+        />
+      </svg>
+    ),
+  },
+  {
+    id: "bow",
+    label: "Bow",
+    render: () => (
+      <svg viewBox="0 0 100 70" fill="none">
+        <path d="M48 35C48 35 10 10 6 35C2 60 48 35 48 35Z" stroke={stroke} strokeWidth="3" fill="#C9525E" />
+        <path d="M52 35C52 35 90 10 94 35C98 60 52 35 52 35Z" stroke={stroke} strokeWidth="3" fill="#C9525E" />
+        <circle cx="50" cy="35" r="9" stroke={stroke} strokeWidth="3" fill="#8B1E2B" />
+      </svg>
+    ),
+  },
+  {
+    id: "stamp",
+    label: "Postage stamp",
+    render: () => (
+      <svg viewBox="0 0 90 110" fill="none">
+        <path
+          d="M6 10H84V100H6Z"
+          stroke={stroke}
+          strokeWidth="2.5"
+          fill="#EFD9DC"
+          strokeDasharray="4 3"
+        />
+        <rect x="16" y="20" width="58" height="70" stroke={stroke} strokeWidth="2.5" fill="none" />
+        <path d="M25 65C35 45 55 45 65 65C55 58 35 58 25 65Z" stroke={stroke} strokeWidth="2" fill="#8A9A5B" />
+        <circle cx="45" cy="40" r="10" stroke={stroke} strokeWidth="2" fill="#C9525E" />
+      </svg>
+    ),
+  },
+  {
+    id: "cherries",
+    label: "Cherries",
+    render: () => (
+      <svg viewBox="0 0 100 100" fill="none">
+        <path d="M55 15C58 30 60 40 60 50" stroke={stroke} strokeWidth="3" fill="none" strokeLinecap="round" />
+        <path d="M55 15C48 28 42 36 38 46" stroke={stroke} strokeWidth="3" fill="none" strokeLinecap="round" />
+        <circle cx="34" cy="66" r="20" stroke={stroke} strokeWidth="3" fill="#8B1E2B" />
+        <circle cx="66" cy="60" r="20" stroke={stroke} strokeWidth="3" fill="#8B1E2B" />
+        <ellipse cx="27" cy="59" rx="5" ry="3" fill="#F3ECDD" opacity="0.5" />
+        <ellipse cx="59" cy="53" rx="5" ry="3" fill="#F3ECDD" opacity="0.5" />
+      </svg>
+    ),
+  },
+  {
+    id: "yinyang",
+    label: "Yin yang",
+    render: () => (
+      <svg viewBox="0 0 100 100" fill="none">
+        <circle cx="50" cy="50" r="44" stroke={stroke} strokeWidth="3" fill="#F3ECDD" />
+        <path
+          d="M50 6C72 6 72 50 50 50C28 50 28 94 50 94C28 94 6 72 6 50C6 28 28 6 50 6Z"
+          fill="#2B1A16"
+        />
+        <circle cx="50" cy="28" r="7" fill="#F3ECDD" />
+        <circle cx="50" cy="72" r="7" fill="#2B1A16" />
+      </svg>
+    ),
+  },
+  {
     id: "paperclip",
     label: "Paperclip",
     render: () => (
