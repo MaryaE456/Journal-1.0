@@ -5,6 +5,9 @@ import { useRouter } from "next/navigation";
 import { Entry } from "@/lib/types";
 import { getAllEntries, putEntry, deleteEntry, getImageUrl } from "@/lib/db";
 import { newId } from "@/lib/id";
+import { BUILT_IN_STICKERS } from "@/lib/stickers";
+
+const CARD_STICKERS = ["heart", "star", "bow", "cherries", "sparkle", "vinyl"];
 
 export default function HomePage() {
   const router = useRouter();
@@ -50,11 +53,17 @@ export default function HomePage() {
 
   return (
     <main className="min-h-screen px-6 py-12 md:px-16">
-      <header className="mb-12 flex items-end justify-between flex-wrap gap-4">
-        <div>
+      <header className="mb-12 flex items-end justify-between flex-wrap gap-4 relative">
+        <div className="relative">
           <p className="font-hand text-ink-light text-lg mb-1">welcome back to your</p>
-          <h1 className="font-script text-6xl md:text-7xl text-ink-deep text-[#2B1A16] leading-none">
+          <h1 className="font-script text-6xl md:text-7xl text-ink-deep text-[#2B1A16] leading-none relative inline-block">
             Scrapbook Journal
+            <span className="absolute -top-6 -right-10 w-10 h-10 -rotate-12 opacity-90">
+              {BUILT_IN_STICKERS.find((s) => s.id === "heart")?.render()}
+            </span>
+            <span className="absolute -bottom-3 left-1/3 w-8 h-8 rotate-12 opacity-90">
+              {BUILT_IN_STICKERS.find((s) => s.id === "sparkle")?.render()}
+            </span>
           </h1>
         </div>
         <button
@@ -141,6 +150,9 @@ function EntryCard({
   onDelete: (id: string, e: React.MouseEvent) => void;
 }) {
   const [cover, setCover] = useState<string | undefined>();
+  const stickerId = CARD_STICKERS[Math.abs(hashCode(entry.id)) % CARD_STICKERS.length];
+  const sticker = BUILT_IN_STICKERS.find((s) => s.id === stickerId);
+  const tilt = (Math.abs(hashCode(entry.id)) % 5) - 2; // -2..2 deg
 
   useEffect(() => {
     if (entry.coverImageId) {
@@ -151,14 +163,23 @@ function EntryCard({
   return (
     <a
       href={`/entry/${entry.id}`}
-      className="group block bg-kraft-texture rounded-sm shadow-page hover:shadow-lift hover:-translate-y-1 transition-all p-3 aspect-[3/4] relative"
+      style={{ transform: `rotate(${tilt}deg)` }}
+      className="group block bg-kraft-texture rounded-sm shadow-page hover:shadow-lift hover:-translate-y-1 hover:rotate-0 transition-all p-3 aspect-[3/4] relative"
     >
+      {/* washi tape across the top corner */}
+      <div className="absolute -top-3 left-6 w-16 h-6 bg-tape/85 rotate-[-6deg] shadow-sm z-10" />
+
+      {/* a little sticker peeking off the corner */}
+      <div className="absolute -top-4 -right-4 w-10 h-10 z-10 drop-shadow-md rotate-6">
+        {sticker?.render()}
+      </div>
+
       <div className="absolute inset-2 bg-paper rounded-[2px] overflow-hidden flex flex-col">
         {cover ? (
           // eslint-disable-next-line @next/next/no-img-element
-          <img src={cover} alt="" className="w-full h-2/3 object-cover" />
+          <img src={cover} alt="" className="w-full h-2/3 object-cover torn-bottom" />
         ) : (
-          <div className="w-full h-2/3 bg-paper-dark flex items-center justify-center">
+          <div className="w-full h-2/3 bg-paper-dark flex items-center justify-center torn-bottom">
             <span className="font-script text-3xl text-kraft-dark/50">?</span>
           </div>
         )}
@@ -177,4 +198,13 @@ function EntryCard({
       </div>
     </a>
   );
+}
+
+function hashCode(str: string): number {
+  let hash = 0;
+  for (let i = 0; i < str.length; i++) {
+    hash = (hash << 5) - hash + str.charCodeAt(i);
+    hash |= 0;
+  }
+  return hash;
 }
