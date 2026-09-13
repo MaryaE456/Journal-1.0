@@ -9,7 +9,7 @@ import { newId } from "@/lib/id";
 import PagePreview from "@/components/PagePreview";
 
 function blankPage(): Spread["left"] {
-  return { id: newId(), background: "cream", elements: [] };
+  return { id: newId(), background: { style: "plain", color: "#F3ECDD" }, elements: [] };
 }
 
 export default function EntryPage({ params }: { params: { id: string } }) {
@@ -101,11 +101,11 @@ export default function EntryPage({ params }: { params: { id: string } }) {
               onChange={(e) => setTitleDraft(e.target.value)}
               onBlur={saveTitle}
               onKeyDown={(e) => e.key === "Enter" && saveTitle()}
-              className="font-script text-5xl bg-transparent border-b-2 border-rust outline-none text-[#3E2C23]"
+              className="font-script text-5xl bg-transparent border-b-2 border-rust outline-none text-[#2B1A16]"
             />
           ) : (
             <h1
-              className="font-script text-6xl text-[#3E2C23] cursor-text"
+              className="font-script text-6xl text-[#2B1A16] cursor-text"
               onClick={() => {
                 setTitleDraft(entry.title);
                 setEditingTitle(true);
@@ -137,7 +137,7 @@ export default function EntryPage({ params }: { params: { id: string } }) {
             <Link
               key={spread.id}
               href={`/entry/${entry.id}/spread/${spread.id}`}
-              className="group flex bg-[#5E4028] rounded-sm shadow-spread overflow-hidden aspect-[16/9] max-w-3xl hover:-translate-y-1 transition-transform relative"
+              className="group flex bg-[#3D0E15] rounded-sm shadow-spread overflow-hidden aspect-[16/9] max-w-3xl hover:-translate-y-1 transition-transform relative"
             >
               <div className="flex-1 relative border-r border-black/20">
                 <PagePreview page={spread.left} />
