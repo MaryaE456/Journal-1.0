@@ -6,11 +6,12 @@ export type FontKey = "script" | "hand" | "type" | "serif" | "ui";
 
 export type PhotoFrame = "none" | "polaroid" | "torn" | "tape";
 
-export type PageBackground =
-  | "cream"
-  | "lined"
-  | "kraft"
-  | "grid";
+export type BackgroundStyle = "plain" | "lined" | "grid" | "dotted";
+
+export interface PageBackground {
+  style: BackgroundStyle;
+  color: string; // any hex color, chosen via the color picker
+}
 
 interface BaseElement {
   id: string;
@@ -70,4 +71,3 @@ export interface Entry {
   createdAt: number;
   updatedAt: number;
   coverImageId?: string;
-}
