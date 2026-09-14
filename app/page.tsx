@@ -105,18 +105,25 @@ function BowCream({ className = "" }: { className?: string }) {
 // A loose scatter of doodles across the whole page, collage-cover style —
 // fixed so it stays put behind the content while scrolling. Fully opaque.
 const SCATTER = [
-  { El: SolidStar, top: "6%", left: "4%", size: 36, rotate: -10 },
-  { El: BowCream, top: "16%", left: "80%", size: 48, rotate: -8 },
-  { El: GinghamHeart, top: "68%", left: "8%", size: 44, rotate: 6 },
-  { El: Spiral, top: "24%", left: "92%", size: 34, rotate: 0 },
-  { El: MoonCream, top: "50%", left: "94%", size: 30, rotate: 0 },
-  { El: CloudCream, top: "10%", left: "42%", size: 46, rotate: 0 },
-  { El: SolidStar, top: "82%", left: "88%", size: 26, rotate: 10 },
-  { El: GinghamHeart, top: "88%", left: "45%", size: 38, rotate: -6 },
-  { El: Spiral, top: "58%", left: "2%", size: 30, rotate: 10 },
-  { El: BowCream, top: "92%", left: "10%", size: 34, rotate: 8 },
-  { El: SolidStar, top: "42%", left: "50%", size: 22, rotate: 14 },
-  { El: MoonCream, top: "6%", left: "62%", size: 26, rotate: -6 },
+  // clear of the centered title block (roughly top 0-32%, left 20-80%)
+  { El: SolidStar, top: "3%", left: "4%", size: 60, rotate: -10 },
+  { El: BowCream, top: "4%", left: "88%", size: 70, rotate: -8 },
+  { El: GinghamHeart, top: "70%", left: "5%", size: 72, rotate: 6 },
+  { El: Spiral, top: "40%", left: "94%", size: 56, rotate: 0 },
+  { El: MoonCream, top: "58%", left: "92%", size: 54, rotate: 0 },
+  { El: CloudCream, top: "38%", left: "2%", size: 78, rotate: 0 },
+  { El: SolidStar, top: "84%", left: "90%", size: 48, rotate: 10 },
+  { El: GinghamHeart, top: "88%", left: "48%", size: 64, rotate: -6 },
+  { El: Spiral, top: "62%", left: "18%", size: 50, rotate: 10 },
+  { El: BowCream, top: "92%", left: "12%", size: 58, rotate: 8 },
+  { El: MoonCream, top: "34%", left: "8%", size: 40, rotate: -6 },
+  { El: SolidStar, top: "20%", left: "6%", size: 40, rotate: 14 },
+  { El: CloudCream, top: "18%", left: "94%", size: 52, rotate: 0 },
+  { El: GinghamHeart, top: "22%", left: "3%", size: 46, rotate: 8 },
+  { El: BowCream, top: "48%", left: "50%", size: 44, rotate: -4 },
+  { El: Spiral, top: "80%", left: "70%", size: 52, rotate: -8 },
+  { El: SolidStar, top: "55%", left: "36%", size: 34, rotate: 6 },
+  { El: MoonCream, top: "78%", left: "30%", size: 38, rotate: 4 },
 ];
 
 function PageDoodles() {
