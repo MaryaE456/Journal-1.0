@@ -174,7 +174,7 @@ export default function SpreadEditorPage({ params }: { params: { id: string; spr
   if (!spread) {
     return (
       <main className="min-h-screen flex items-center justify-center">
-        <p className="font-hand text-xl text-ink-light">opening this page…</p>
+        <p className="font-type text-xl text-ink-light">opening this page…</p>
       </main>
     );
   }
@@ -185,10 +185,10 @@ export default function SpreadEditorPage({ params }: { params: { id: string; spr
   return (
     <main className="min-h-screen flex flex-col items-center py-8 px-4">
       <div className="w-full max-w-5xl flex items-center justify-between mb-5">
-        <Link href={`/entry/${params.id}`} className="font-ui text-sm text-ink-light hover:text-white">
+        <Link href={`/entry/${params.id}`} className="font-type text-sm text-ink-light hover:text-white">
           ← back to spreads
         </Link>
-        <span className="font-ui text-xs text-ink-light">
+        <span className="font-type text-xs text-ink-light">
           {saveState === "saving" ? "saving…" : saveState === "saved" ? "saved" : ""}
         </span>
       </div>
@@ -204,17 +204,17 @@ export default function SpreadEditorPage({ params }: { params: { id: string; spr
         </ToolButton>
 
         <div className="ml-auto flex items-center gap-2">
-          <span className="font-ui text-xs text-ink-light">editing:</span>
+          <span className="font-type text-xs text-ink-light">editing:</span>
           <div className="flex rounded-sm overflow-hidden border border-kraft-dark/30">
             <button
               onClick={() => setActiveSide("left")}
-              className={`font-ui text-xs px-3 py-1.5 ${activeSide === "left" ? "bg-rust text-paper" : "bg-white/50 text-ink"}`}
+              className={`font-type text-xs px-3 py-1.5 ${activeSide === "left" ? "bg-rust text-paper" : "bg-white/50 text-ink"}`}
             >
               left page
             </button>
             <button
               onClick={() => setActiveSide("right")}
-              className={`font-ui text-xs px-3 py-1.5 ${activeSide === "right" ? "bg-rust text-paper" : "bg-white/50 text-ink"}`}
+              className={`font-type text-xs px-3 py-1.5 ${activeSide === "right" ? "bg-rust text-paper" : "bg-white/50 text-ink"}`}
             >
               right page
             </button>
@@ -348,7 +348,7 @@ function PageArea({
           />
         ))}
       {page.elements.length === 0 && (
-        <p className="absolute inset-0 flex items-center justify-center font-hand text-ink-light/50 text-lg pointer-events-none">
+        <p className="absolute inset-0 flex items-center justify-center font-type text-ink-light/50 text-lg pointer-events-none">
           {side} page
         </p>
       )}
@@ -368,7 +368,7 @@ function ToolButton({
   return (
     <button
       onClick={onClick}
-      className={`font-hand text-base px-4 py-1.5 rounded-sm shadow-page hover:-translate-y-0.5 transition-transform ${
+      className={`font-type text-xs uppercase tracking-wide px-4 py-1.5 rounded-sm shadow-page hover:-translate-y-0.5 transition-transform ${
         accent ? "bg-sage text-paper" : "bg-white/60 text-ink"
       }`}
     >
@@ -403,7 +403,7 @@ function BackgroundPicker({
       </div>
       <div className="w-px h-5 bg-kraft-dark/20" />
       <ColorPicker color={background.color} onChange={onColorChange} />
-      <span className="font-ui text-[10px] text-ink-light">colors</span>
+      <span className="font-type text-[10px] text-ink-light">colors</span>
     </div>
   );
 }
@@ -420,7 +420,7 @@ function TextControls({
       <select
         value={element.font}
         onChange={(e) => onChange({ font: e.target.value as FontKey })}
-        className={`font-ui text-sm px-2.5 py-1.5 rounded-sm border border-kraft-dark/25 bg-white/60`}
+        className={`font-type text-sm px-2.5 py-1.5 rounded-sm border border-kraft-dark/25 bg-white/60`}
       >
         {FONT_OPTIONS.map((f) => (
           <option key={f.key} value={f.key}>
@@ -443,7 +443,7 @@ function TextControls({
           <button
             key={a}
             onClick={() => onChange({ align: a })}
-            className={`font-ui text-xs px-2 py-1 rounded-sm border ${
+            className={`font-type text-xs px-2 py-1 rounded-sm border ${
               element.align === a ? "border-rust bg-rust/10" : "border-kraft-dark/25 bg-white/50"
             }`}
           >
@@ -452,7 +452,7 @@ function TextControls({
         ))}
       </div>
       <div className="flex items-center gap-2">
-        <span className="font-ui text-xs text-ink-light">size</span>
+        <span className="font-type text-xs text-ink-light">size</span>
         <input
           type="range"
           min={50}
@@ -468,7 +468,7 @@ function TextControls({
             <button
               key={b}
               onClick={() => onChange({ background: b, shape: b === "shape" ? element.shape ?? "heart" : element.shape })}
-              className={`font-ui text-xs px-2 py-1 rounded-sm border ${
+              className={`font-type text-xs px-2 py-1 rounded-sm border ${
                 element.background === b ? "border-rust bg-rust/10" : "border-kraft-dark/25 bg-white/50"
               }`}
             >
@@ -482,7 +482,7 @@ function TextControls({
               <button
                 key={s.key}
                 onClick={() => onChange({ shape: s.key })}
-                className={`font-ui text-xs px-2 py-1 rounded-sm border ${
+                className={`font-type text-xs px-2 py-1 rounded-sm border ${
                   (element.shape ?? "heart") === s.key ? "border-rust bg-rust/10" : "border-kraft-dark/25 bg-white/50"
                 }`}
               >
@@ -509,7 +509,7 @@ function PhotoControls({
         <button
           key={f}
           onClick={() => onChange({ frame: f })}
-          className={`font-ui text-xs px-3 py-1.5 rounded-sm border ${
+          className={`font-type text-xs px-3 py-1.5 rounded-sm border ${
             element.frame === f ? "border-rust bg-rust/10" : "border-kraft-dark/25 bg-white/50"
           }`}
         >
