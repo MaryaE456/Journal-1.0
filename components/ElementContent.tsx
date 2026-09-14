@@ -47,12 +47,69 @@ function PhotoContent({ element }: { element: Extract<JournalElement, { type: "p
   );
 }
 
+function ShapeBackground({ shape }: { shape: import("@/lib/types").TextShape }) {
+  const common = { preserveAspectRatio: "none" as const, className: "absolute inset-0 w-full h-full" };
+  if (shape === "heart") {
+    return (
+      <svg viewBox="0 0 100 90" {...common}>
+        <path
+          d="M50 84C50 84 8 56 8 30C8 12 24 4 38 12C44 15.5 50 24 50 24C50 24 56 15.5 62 12C76 4 92 12 92 30C92 56 50 84 50 84Z"
+          fill="#EFD9DC"
+          stroke="#C9525E"
+          strokeWidth="2"
+        />
+      </svg>
+    );
+  }
+  if (shape === "star") {
+    return (
+      <svg viewBox="0 0 100 100" {...common}>
+        <path
+          d="M50 4L63 36L98 39L70 61L80 96L50 76L20 96L30 61L2 39L37 36Z"
+          fill="#F3ECDD"
+          stroke="#C9B896"
+          strokeWidth="2"
+          strokeLinejoin="round"
+        />
+      </svg>
+    );
+  }
+  return (
+    <svg viewBox="0 0 100 70" {...common}>
+      <path
+        d="M25 60C13 60 8 50 15 42C10 31 22 21 32 25C36 15 55 13 60 24C74 21 84 33 78 43C86 46 85 60 74 60Z"
+        fill="#F3ECDD"
+        stroke="#C9B896"
+        strokeWidth="2"
+      />
+    </svg>
+  );
+}
+
 function TextContent({ element }: { element: Extract<JournalElement, { type: "text" }> }) {
+  if (element.background === "shape") {
+    return (
+      <div className="relative w-full h-full flex items-center justify-center p-[12%]">
+        <ShapeBackground shape={element.shape ?? "heart"} />
+        <span
+          className={`relative z-10 w-full text-center ${fontClassName(element.font)}`}
+          style={{
+            color: element.color,
+            fontSize: `${element.fontSize}%`,
+            lineHeight: 1.2,
+            whiteSpace: "pre-wrap",
+            wordBreak: "break-word",
+          }}
+        >
+          {element.content || "…"}
+        </span>
+      </div>
+    );
+  }
+
   const bgClass =
     element.background === "paper"
-      ? "bg-paper/90 px-3 py-2 shadow-page"
-      : element.background === "highlight"
-      ? "bg-tape/50 px-2 py-1"
+      ? "bg-paper bg-lined-page px-3 py-2 shadow-page"
       : element.background === "tape-strip"
       ? "bg-tape/70 px-2 py-1"
       : "";
