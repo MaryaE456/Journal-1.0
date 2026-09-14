@@ -23,6 +23,8 @@ const config: Config = {
         type: ["var(--font-special-elite)", "monospace"],
         serif: ["var(--font-playfair)", "serif"],
         ui: ["var(--font-inter)", "sans-serif"],
+        display: ["var(--font-bebas)", "sans-serif"],
+        delicate: ["var(--font-cormorant)", "serif"],
       },
       boxShadow: {
         page: "0 2px 10px rgba(62, 44, 35, 0.15)",
