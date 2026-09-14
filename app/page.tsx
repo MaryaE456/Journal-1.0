@@ -11,20 +11,6 @@ const CARD_STICKERS = ["heart", "star", "bow", "cherries", "sparkle", "vinyl"];
 
 // small cream/beige decorations scattered around the homepage headline —
 // distinct from the wine-toned sticker drawer used inside the editor
-function CreamStar({ className = "" }: { className?: string }) {
-  return (
-    <svg viewBox="0 0 100 100" className={className} fill="none">
-      <path
-        d="M50 8L61 38L93 40L67 60L77 92L50 73L23 92L33 60L7 40L39 38Z"
-        stroke="#F3ECDD"
-        strokeWidth="4"
-        strokeLinejoin="round"
-        fill="#E8DEC8"
-      />
-    </svg>
-  );
-}
-
 function CreamBow({ className = "" }: { className?: string }) {
   return (
     <svg viewBox="0 0 100 70" className={className} fill="none">
@@ -45,6 +31,52 @@ function CreamDots({ className = "" }: { className?: string }) {
       <circle cx="14" cy="46" r="7" fill="#EFE3D0" />
       <circle cx="52" cy="48" r="5" fill="#F3ECDD" />
     </svg>
+  );
+}
+
+function WhiteOutlineStar({ className = "" }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 100 100" className={className} fill="none">
+      <path
+        d="M50 8L61 38L93 40L67 60L77 92L50 73L23 92L33 60L7 40L39 38Z"
+        stroke="#F8F1E4"
+        strokeWidth="5"
+        strokeLinejoin="round"
+        fill="none"
+      />
+    </svg>
+  );
+}
+
+// A loose scatter of doodles across the whole page, collage-cover style —
+// fixed so it stays put behind the content while scrolling.
+const SCATTER = [
+  { El: WhiteOutlineStar, top: "6%", left: "4%", size: 34, rotate: -10, opacity: 0.5 },
+  { El: WhiteOutlineStar, top: "68%", left: "9%", size: 26, rotate: 14, opacity: 0.4 },
+  { El: WhiteOutlineStar, top: "22%", left: "92%", size: 30, rotate: 8, opacity: 0.45 },
+  { El: WhiteOutlineStar, top: "80%", left: "88%", size: 24, rotate: -12, opacity: 0.4 },
+  { El: WhiteOutlineStar, top: "48%", left: "50%", size: 20, rotate: 6, opacity: 0.3 },
+  { El: CreamBow, top: "14%", left: "78%", size: 46, rotate: -8, opacity: 0.45 },
+  { El: CreamBow, top: "58%", left: "3%", size: 40, rotate: 10, opacity: 0.4 },
+  { El: CreamBow, top: "88%", left: "40%", size: 38, rotate: -6, opacity: 0.4 },
+  { El: CreamDots, top: "35%", left: "12%", size: 60, rotate: 0, opacity: 0.35 },
+  { El: CreamDots, top: "10%", left: "40%", size: 50, rotate: 4, opacity: 0.3 },
+  { El: CreamDots, top: "75%", left: "65%", size: 55, rotate: -4, opacity: 0.35 },
+];
+
+function PageDoodles() {
+  return (
+    <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden">
+      {SCATTER.map(({ El, top, left, size, rotate, opacity }, i) => (
+        <div
+          key={i}
+          className="absolute"
+          style={{ top, left, width: size, height: size, transform: `rotate(${rotate}deg)`, opacity }}
+        >
+          <El className="w-full h-full" />
+        </div>
+      ))}
+    </div>
   );
 }
 
@@ -91,28 +123,23 @@ export default function HomePage() {
   }
 
   return (
-    <main className="min-h-screen px-6 py-12 md:px-16">
-      <header className="mb-16 flex items-start justify-between flex-wrap gap-4 relative pt-6">
-        <div className="relative py-6 px-2">
-          {/* scattered cream decorations */}
-          <CreamBow className="absolute -top-8 left-8 w-14 h-10 -rotate-12 opacity-95" />
-          <CreamStar className="absolute -top-6 right-0 w-9 h-9 rotate-12 opacity-90" />
-          <CreamStar className="absolute top-1/2 -left-10 w-6 h-6 -rotate-6 opacity-80" />
-          <CreamDots className="absolute -bottom-8 left-10 w-24 h-14 opacity-90" />
-          <CreamBow className="absolute bottom-0 right-10 w-10 h-8 rotate-45 opacity-80" />
-
-          <h1 className="font-script text-5xl md:text-6xl leading-tight relative z-10" style={{ color: "#F8F1E4" }}>
-            Welcome to your own
-            <br />
-            digital scrapbook
-          </h1>
-        </div>
+    <main className="min-h-screen px-6 py-12 md:px-16 relative overflow-hidden">
+      <PageDoodles />
+      <div className="relative z-10">
+      <header className="mb-16 flex flex-col items-center text-center gap-4 relative pt-6">
         <button
           onClick={() => setShowNew(true)}
-          className="font-type text-sm tracking-wide uppercase bg-rust text-paper px-6 py-3 rounded-sm shadow-lift hover:-translate-y-0.5 hover:shadow-page transition-transform -rotate-1"
+          className="absolute top-6 right-0 font-type text-sm tracking-wide uppercase bg-rust text-paper px-6 py-3 rounded-sm shadow-lift hover:-translate-y-0.5 hover:shadow-page transition-transform -rotate-1"
         >
           + New entry
         </button>
+
+        <p className="font-delicate italic text-2xl md:text-3xl tracking-wide" style={{ color: "#F0DEE0" }}>
+          welcome to your own
+        </p>
+        <h1 className="font-display text-6xl md:text-8xl tracking-wide leading-none" style={{ color: "#F8F1E4" }}>
+          DIGITAL SCRAPBOOK
+        </h1>
       </header>
 
       {loading ? (
@@ -120,7 +147,7 @@ export default function HomePage() {
           unpacking your shelf…
         </p>
       ) : entries.length === 0 ? (
-        <div className="border-2 border-dashed border-paper/50 rounded-md p-16 text-center max-w-xl">
+        <div className="border-2 border-dashed border-paper/50 rounded-md p-16 text-center max-w-xl mx-auto">
           <p className="font-hand text-2xl mb-2" style={{ color: "#F8F1E4" }}>
             Your shelf is empty.
           </p>
@@ -183,6 +210,7 @@ export default function HomePage() {
           </div>
         </div>
       )}
+      </div>
     </main>
   );
 }
