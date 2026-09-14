@@ -88,7 +88,7 @@ export default function EntryPage({ params }: { params: { id: string } }) {
 
   return (
     <main className="min-h-screen px-6 py-12 md:px-16">
-      <Link href="/" className="font-ui text-sm text-ink-light hover:text-ink mb-6 inline-block">
+      <Link href="/" className="font-type text-sm mb-6 inline-block" style={{ color: "#F0DEE0" }}>
         ← back to shelf
       </Link>
 
@@ -101,11 +101,13 @@ export default function EntryPage({ params }: { params: { id: string } }) {
               onChange={(e) => setTitleDraft(e.target.value)}
               onBlur={saveTitle}
               onKeyDown={(e) => e.key === "Enter" && saveTitle()}
-              className="font-script text-5xl bg-transparent border-b-2 border-rust outline-none text-[#2B1A16]"
+              className="font-display text-5xl bg-transparent border-b-2 border-rust outline-none tracking-wide"
+              style={{ color: "#F8F1E4" }}
             />
           ) : (
             <h1
-              className="font-script text-6xl text-[#2B1A16] cursor-text"
+              className="font-display text-6xl cursor-text tracking-wide"
+              style={{ color: "#F8F1E4" }}
               onClick={() => {
                 setTitleDraft(entry.title);
                 setEditingTitle(true);
@@ -114,20 +116,24 @@ export default function EntryPage({ params }: { params: { id: string } }) {
               {entry.title}
             </h1>
           )}
-          <p className="font-ui text-sm text-ink-light mt-1">{entry.date}</p>
+          <p className="font-type text-sm mt-1" style={{ color: "#F0DEE0" }}>
+            {entry.date}
+          </p>
         </div>
         <button
           onClick={addSpread}
-          className="bg-rust text-paper font-hand text-xl px-6 py-3 rounded-sm shadow-lift hover:-translate-y-0.5 transition-transform rotate-1"
+          className="bg-rust text-paper font-type text-sm uppercase tracking-wide px-6 py-3 rounded-sm shadow-lift hover:-translate-y-0.5 transition-transform rotate-1"
         >
           + Add page spread
         </button>
       </header>
 
       {spreads.length === 0 ? (
-        <div className="border-2 border-dashed border-kraft-dark/40 rounded-md p-16 text-center max-w-xl">
-          <p className="font-hand text-2xl text-ink mb-2">No pages yet.</p>
-          <p className="font-ui text-sm text-ink-light">
+        <div className="border-2 border-dashed border-paper/40 rounded-md p-16 text-center max-w-xl">
+          <p className="font-display text-3xl tracking-wide mb-2" style={{ color: "#F8F1E4" }}>
+            No pages yet.
+          </p>
+          <p className="font-type text-sm" style={{ color: "#F0DEE0" }}>
             Add your first spread — you can design it freely or let a template lay it out for you.
           </p>
         </div>
