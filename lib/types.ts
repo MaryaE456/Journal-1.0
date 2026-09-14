@@ -15,19 +15,17 @@ export interface PageBackground {
 
 interface BaseElement {
   id: string;
-  /** position + size are percentages (0-100) of the page's width/height,
-   * so layouts hold up across screen sizes */
   x: number;
   y: number;
   width: number;
   height: number;
-  rotation: number; // degrees
+  rotation: number;
   zIndex: number;
 }
 
 export interface PhotoElement extends BaseElement {
   type: "photo";
-  imageId: string; // key into the images object store
+  imageId: string;
   frame: PhotoFrame;
 }
 
@@ -36,14 +34,14 @@ export interface TextElement extends BaseElement {
   content: string;
   font: FontKey;
   color: string;
-  fontSize: number; // px, at 100% page width reference
+  fontSize: number;
   align: "left" | "center" | "right";
   background: "none" | "paper" | "highlight" | "tape-strip";
 }
 
 export interface StickerElement extends BaseElement {
   type: "sticker";
-  stickerId: string; // built-in sticker id, or "custom:<imageId>"
+  stickerId: string;
 }
 
 export type JournalElement = PhotoElement | TextElement | StickerElement;
@@ -67,7 +65,8 @@ export interface Spread {
 export interface Entry {
   id: string;
   title: string;
-  date: string; // yyyy-mm-dd, the date of the event/outing
+  date: string;
   createdAt: number;
   updatedAt: number;
   coverImageId?: string;
+}
