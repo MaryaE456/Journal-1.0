@@ -17,7 +17,7 @@ import CanvasElement from "@/components/CanvasElement";
 import StickerDrawer from "@/components/StickerDrawer";
 import TemplateModal from "@/components/TemplateModal";
 import ColorPicker from "@/components/ColorPicker";
-import { FONT_OPTIONS, TEXT_COLOR_OPTIONS, BACKGROUND_STYLES } from "@/lib/fontMap";
+import { FONT_OPTIONS, TEXT_COLOR_OPTIONS, BACKGROUND_STYLES, SHAPE_OPTIONS } from "@/lib/fontMap";
 
 type Side = "left" | "right";
 
@@ -417,19 +417,17 @@ function TextControls({
 }) {
   return (
     <div className="flex flex-wrap items-center gap-4">
-      <div className="flex gap-1">
+      <select
+        value={element.font}
+        onChange={(e) => onChange({ font: e.target.value as FontKey })}
+        className={`font-ui text-sm px-2.5 py-1.5 rounded-sm border border-kraft-dark/25 bg-white/60`}
+      >
         {FONT_OPTIONS.map((f) => (
-          <button
-            key={f.key}
-            onClick={() => onChange({ font: f.key as FontKey })}
-            className={`font-ui text-xs px-2.5 py-1 rounded-sm border ${
-              element.font === f.key ? "border-rust bg-rust/10" : "border-kraft-dark/25 bg-white/50"
-            } ${f.className}`}
-          >
+          <option key={f.key} value={f.key}>
             {f.label}
-          </button>
+          </option>
         ))}
-      </div>
+      </select>
       <div className="flex gap-1">
         {TEXT_COLOR_OPTIONS.map((c) => (
           <button
@@ -464,18 +462,35 @@ function TextControls({
           className="accent-rust"
         />
       </div>
-      <div className="flex gap-1">
-        {(["none", "paper", "highlight", "tape-strip"] as const).map((b) => (
-          <button
-            key={b}
-            onClick={() => onChange({ background: b })}
-            className={`font-ui text-xs px-2 py-1 rounded-sm border ${
-              element.background === b ? "border-rust bg-rust/10" : "border-kraft-dark/25 bg-white/50"
-            }`}
-          >
-            {b}
-          </button>
-        ))}
+      <div className="flex items-center gap-2">
+        <div className="flex gap-1">
+          {(["none", "paper", "shape", "tape-strip"] as const).map((b) => (
+            <button
+              key={b}
+              onClick={() => onChange({ background: b, shape: b === "shape" ? element.shape ?? "heart" : element.shape })}
+              className={`font-ui text-xs px-2 py-1 rounded-sm border ${
+                element.background === b ? "border-rust bg-rust/10" : "border-kraft-dark/25 bg-white/50"
+              }`}
+            >
+              {b === "paper" ? "lined paper" : b}
+            </button>
+          ))}
+        </div>
+        {element.background === "shape" && (
+          <div className="flex gap-1">
+            {SHAPE_OPTIONS.map((s) => (
+              <button
+                key={s.key}
+                onClick={() => onChange({ shape: s.key })}
+                className={`font-ui text-xs px-2 py-1 rounded-sm border ${
+                  (element.shape ?? "heart") === s.key ? "border-rust bg-rust/10" : "border-kraft-dark/25 bg-white/50"
+                }`}
+              >
+                {s.label}
+              </button>
+            ))}
+          </div>
+        )}
       </div>
     </div>
   );
