@@ -19,7 +19,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en">
       <body
-        className={`${caveat.variable} ${kalam.variable} ${specialElite.variable} ${playfair.variable} ${inter.variable} ${bebas.variable} ${cormorant.variable} font-ui bg-[#6E1420] min-h-screen`}
+        className={`${caveat.variable} ${kalam.variable} ${specialElite.variable} ${playfair.variable} ${inter.variable} ${bebas.variable} ${cormorant.variable} font-ui bg-[#4E1524] min-h-screen`}
       >
         {children}
       </body>
